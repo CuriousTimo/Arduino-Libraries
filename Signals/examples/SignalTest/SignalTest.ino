@@ -1,5 +1,6 @@
 /*  SignalTest.ino Example Sketch for Signals Library
- *   
+ * 
+ *  Viessmann 4010 - H0 Colour light distant signal                         | Vr0, Vr1 and Vr2
  *  Viessmann 4011 - H0 Colour light block signal                           | Hp0 and Hp1
  *  Viessmann 4013 - H0 Colour light departure signal                       | Hp0, Hp1, Vr0, Vr1 and Vr2
  *  Viessmann 4014 - H0 Colour light block signal with distant signal       | Hp0, Hp1, Hp2 and Hp0/Sh1
@@ -40,10 +41,11 @@
 
 #include <Signals.h>
 
-// Viessmann_4011(hp_red,  hp_green);                                     // Viessmann 4011 = 2 Aspects HP        = 1 Address
-// Viessmann_4013(hp_red1, hp_red2,  hp_green,  hp_yellow, hp_white);     // Viessmann 4013 = 2 Aspects HP        = 2 Addresses
-// Viessmann_4014(hp_red,  hp_green, vr_green,  vr_yellow);               // Viessmann 4014 = 2 Aspects HP & 3 VR = 3 Addresses
-// Viessmann_4015(hp_red,  hp_green, hp_yellow, vr_green,  vr_yellow);    // Viessmann 4015 = 3 Aspects HP & 3 VR = 4 Addresses
+// Viessmann_4010(vr_green, vr_yellow);                                    // Viessmann 4010 = 3 Aspects HP        = 2 Addresses
+// Viessmann_4011(hp_red,   hp_green);                                     // Viessmann 4011 = 2 Aspects HP        = 1 Address
+// Viessmann_4013(hp_red1,  hp_red2,  hp_green,  hp_yellow, hp_white);     // Viessmann 4013 = 2 Aspects HP        = 2 Addresses
+// Viessmann_4014(hp_red,   hp_green, vr_green,  vr_yellow);               // Viessmann 4014 = 2 Aspects HP & 3 VR = 3 Addresses
+// Viessmann_4015(hp_red,   hp_green, hp_yellow, vr_green,  vr_yellow);    // Viessmann 4015 = 3 Aspects HP & 3 VR = 4 Addresses
 
 Viessmann_4011 signal1(8, 9);
 Viessmann_4013 signal2(3, 4, 5, 6, 7);
@@ -54,8 +56,8 @@ void setup() {
 
   Serial.begin(115200);
   
-  signal1.begin(21);
-  signal2.begin(23);
+  signal1.init(21);
+  signal2.init(23);
   
 }
 

@@ -29,6 +29,44 @@
 #include "Arduino.h"
 #include "Signals.h"
 
+// Viessmann_4010
+Viessmann_4010::Viessmann_4010(uint8_t vr_green, uint8_t vr_yellow) {
+  pinMode(vr_green,   OUTPUT);
+  pinMode(vr_yellow,  OUTPUT);
+  
+  _vr_green   = vr_green;
+  _vr_yellow  = vr_yellow;
+}
+
+void Viessmann_4010::init(uint16_t address_vr) {
+  _address_vr = address_vr;
+    
+  //Vr0
+  digitalWrite(_vr_green,   LOW);
+  digitalWrite(_vr_yellow,  HIGH);
+}
+
+uint16_t Viessmann_4010::getaddress_vr() {
+  return _address_vr;
+}
+
+void Viessmann_4010::set(uint8_t VR) {
+  switch (VR) {
+    case 0: // Vr0
+      digitalWrite(_vr_yellow, LOW);
+      digitalWrite(_vr_green,  HIGH);
+      break;
+    case 1: // Vr1
+      digitalWrite(_vr_yellow, HIGH);
+      digitalWrite(_vr_green,  LOW);
+      break;
+    case 2: // Vr2
+      digitalWrite(_vr_yellow, LOW);
+      digitalWrite(_vr_green,  LOW);
+      break;
+  }
+} // end of Viessmann_4010
+
 // Viessmann_4011
 Viessmann_4011::Viessmann_4011(uint8_t hp_red, uint8_t hp_green) {
   pinMode(hp_red,   OUTPUT);
@@ -38,7 +76,7 @@ Viessmann_4011::Viessmann_4011(uint8_t hp_red, uint8_t hp_green) {
   _hp_green   = hp_green;
 }
 
-void Viessmann_4011::begin(uint16_t address_hp) {
+void Viessmann_4011::init(uint16_t address_hp) {
   _address_hp = address_hp;
 
   set(0); //Hp0
@@ -67,7 +105,7 @@ void Viessmann_4011::set(uint8_t HP) {
       digitalWrite(_hp_green, HIGH);
       break;
   }
-}
+} // end of Viessmann_4011
 
 // Viessmann_4013
 Viessmann_4013::Viessmann_4013(uint8_t hp_red1, uint8_t hp_red2, uint8_t hp_green, uint8_t hp_yellow, uint8_t hp_white) {
@@ -85,7 +123,7 @@ Viessmann_4013::Viessmann_4013(uint8_t hp_red1, uint8_t hp_red2, uint8_t hp_gree
 
 }
 
-void Viessmann_4013::begin(uint16_t address_hp) {
+void Viessmann_4013::init(uint16_t address_hp) {
   _address_hp = address_hp;
     
   set(0); //Hp0
@@ -140,7 +178,7 @@ void Viessmann_4013::set(uint8_t HP) {
       digitalWrite(_hp_white,   HIGH);
       break;
   }
-}
+} // end of Viessmann_4013
 
 // Viessmann_4014
 Viessmann_4014::Viessmann_4014(uint8_t hp_red, uint8_t hp_green, uint8_t vr_green, uint8_t vr_yellow) {
@@ -155,7 +193,7 @@ Viessmann_4014::Viessmann_4014(uint8_t hp_red, uint8_t hp_green, uint8_t vr_gree
   _vr_yellow  = vr_yellow;
 }
 
-void Viessmann_4014::begin(uint16_t address_hp, uint16_t address_vr) {
+void Viessmann_4014::init(uint16_t address_hp, uint16_t address_vr) {
   _address_hp = address_hp;
   _address_vr = address_vr;
     
@@ -200,7 +238,7 @@ void Viessmann_4014::set(uint8_t HP, uint8_t VR) {
       digitalWrite(_vr_green,  LOW);
       break;
   }
-}
+} // end of Viessmann_4014
 
 // Viessmann_4015
 Viessmann_4015::Viessmann_4015(uint8_t hp_red, uint8_t hp_green, uint8_t hp_yellow, uint8_t vr_green, uint8_t vr_yellow) {
@@ -217,7 +255,7 @@ Viessmann_4015::Viessmann_4015(uint8_t hp_red, uint8_t hp_green, uint8_t hp_yell
   _vr_yellow  = vr_yellow;
 }
 
-void Viessmann_4015::begin(uint16_t address_hp, uint16_t address_vr) {
+void Viessmann_4015::init(uint16_t address_hp, uint16_t address_vr) {
   _address_hp = address_hp;
   _address_vr = address_vr;
     
@@ -270,4 +308,4 @@ void Viessmann_4015::set(uint8_t HP, uint8_t VR) {
       digitalWrite(_vr_green,  LOW);
       break;
   }
-}
+} // end of Viessmann_4015
