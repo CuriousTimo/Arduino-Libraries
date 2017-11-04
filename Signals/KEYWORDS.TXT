@@ -1,0 +1,9 @@
+Viessmann_4011	KEYWORD1
+Viessmann_4013	KEYWORD1
+Viessmann_4014	KEYWORD1
+Viessmann_4015	KEYWORD1
+
+begin	KEYWORD2
+set	KEYWORD2
+getaddress_hp	KEYWORD2
+getaddress_vr 	KEYWORD2
