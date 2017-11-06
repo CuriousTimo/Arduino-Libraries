@@ -51,49 +51,22 @@
 
 // Strobe(pin, time ON in ms, time OFF in ms);                             // Stobe          = On or Off           = 1 Address
 
-Viessmann_4011 mySignal1(8, 9);
-Viessmann_4013 mySignal2(3, 4, 5, 6, 7);
-
-uint8_t mode_4011, mode_4013 = 0;
+Strobe strobeLight(13, 50, 150);    // pin13, 50ms on, 150ms off
 
 void setup() {
 
   Serial.begin(115200);   // Start Arduino Serial
   
-  mySignal1.init(21);       // Initialize the start address
-  mySignal2.init(23);       // Initialize the start address
+  strobeLight.init(31);   // Initialize the address
+  
+  strobeLight.set(1);
+  
 }
 
 void loop() {
 
-  // this will walk throught modes 0 to 3 (HP0, HP1, HP3, Hp0/Sh1)
-
-  // Viessmann_4011 only has HP0 and HP1 so turn off leds for modes 2 and 3
-  if (mode_4011 > 1) {
-    mySignal1.set(100);
-  } else {
-    mySignal1.set(mode_4011);
-  }
+  strobeLight.update();   // Needed to update the strobe timer and status
   
-  mySignal2.set(mode_4013);
-
-  // Wait 2 Seconds
-  delay(2000);
-
-  // Goto next Mode
-  mode_4011++;
-  mode_4013++;
-
-  // Reset Viessmann_4011 to mode 0 when bigger than 3
-  if(mode_4011 > 3) {
-    mode_4011 = 0;
-  }
-
-  // Reset Viessmann_4013 to mode 0 when bigger than 3
-  if(mode_4013 > 3) {
-    mode_4013 = 0;
-  }
-  
-  // Serial.println(mySignal1.getaddress());
+  // Serial.println(strobe.getaddress());
   
 }
