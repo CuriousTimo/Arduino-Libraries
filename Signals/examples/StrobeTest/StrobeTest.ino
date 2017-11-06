@@ -45,6 +45,15 @@
 // Inintializers
 // Viessmann_4010(vr_green, vr_yellow);                                    // Viessmann 4010 = 3 Aspects HP        = 2 Addresses
 // Viessmann_4011(hp_red,   hp_green);                                     // Viessmann 4011 = 2 Aspects HP        = 1 Address
+// Viessmann_4013(hp_red1,  hp_red2,  hp_green,  hp_yellow, hp_white);     // Viessmann 4013 = 4 Aspects HP        = 2 Addresses
+// Viessmann_4014(hp_red,   hp_green, vr_green,  vr_yellow);               // Viessmann 4014 = 2 Aspects HP & 3 VR = 1 Address   HP and 2 Addresses VR
+// Viessmann_4015(hp_red,   hp_green, hp_yellow, vr_green,  vr_yellow);    // Viessmann 4015 = 3 Aspects HP & 3 VR = 2 Addresses HP and 2 Addresses VR
+
+// Strobe(pin, time ON in ms, time OFF in ms);                             // Stobe          = On or Off           = 1 Address
+
+// Inintializers
+// Viessmann_4010(vr_green, vr_yellow);                                    // Viessmann 4010 = 3 Aspects HP        = 2 Addresses
+// Viessmann_4011(hp_red,   hp_green);                                     // Viessmann 4011 = 2 Aspects HP        = 1 Address
 // Viessmann_4013(hp_red1,  hp_red2,  hp_green,  hp_yellow, hp_white);     // Viessmann 4013 = 2 Aspects HP        = 2 Addresses
 // Viessmann_4014(hp_red,   hp_green, vr_green,  vr_yellow);               // Viessmann 4014 = 2 Aspects HP & 3 VR = 3 Addresses
 // Viessmann_4015(hp_red,   hp_green, hp_yellow, vr_green,  vr_yellow);    // Viessmann 4015 = 3 Aspects HP & 3 VR = 4 Addresses
