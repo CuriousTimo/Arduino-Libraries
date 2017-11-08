@@ -26,12 +26,31 @@
  * This Library includes the Timing Libarary version 1.9 by Wallace Campos
  */
 
-#ifndef Signals_h
-#define Signals_h
+#ifndef Strobe_h
+#define Strobe_h
 
 #include "Arduino.h"
-#include "Strobe.h"
-#include "Viessmann.h"
+#include "Timing.h"
+
+// Strobe
+class Strobe : public Blink
+{
+  public:
+    Strobe(uint8_t pin, unsigned long on, unsigned long off);
+    virtual bool update();
+
+    void init(uint16_t address);
+    void set(bool state);
+    uint16_t getaddress();
+
+  private:
+    bool _state;
+    uint8_t _pin;
+    uint16_t _address;
+    unsigned long _on;
+    unsigned long _off;
+
+}; // end of Strobe
 
 #endif
 

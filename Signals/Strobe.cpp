@@ -1,4 +1,6 @@
-/* 
+/*
+ * 
+ * Strobe.cpp - Library for German Signals
  * 
  * Copyright (c) 2017 Timo Sariwating (Curious Timo). All rights reserved.
  * 
@@ -26,12 +28,48 @@
  * This Library includes the Timing Libarary version 1.9 by Wallace Campos
  */
 
-#ifndef Signals_h
-#define Signals_h
-
 #include "Arduino.h"
 #include "Strobe.h"
-#include "Viessmann.h"
+#include "Timing.h"
 
-#endif
+// Strobe
+Strobe::Strobe(uint8_t pin, unsigned long on, unsigned long off):Blink(on, off) {
+  pinMode(pin,  OUTPUT);
 
+  _pin  = pin;
+}
+
+void Strobe::init(uint16_t address) {
+  _address = address;
+    
+  //Off
+  _state = 0;
+  digitalWrite(_pin, LOW);
+}
+
+void Strobe::set(bool state) {
+  _state  = state;
+}
+
+bool Strobe::update() {
+  if (_state){                  //If timer is active
+    if (millis()-started >= interval){  //and elapsed time is greater than interval
+      if (!out){                //and output is off
+        interval = interval1;   //change the time to check to interval1 (time on)
+      }
+      else{                     //If output is on
+        interval = interval2;   //change the time to check to interval2 (time off)
+      }
+      started = millis();       //store when output is changed (elapsed times greater than interval)
+      out = !out;               //toggle the output
+    }
+  }
+  else{                         //If timer isn't active
+    out = false;                //set output to low level
+  }
+  digitalWrite(_pin ,out);
+}
+
+uint16_t Strobe::getaddress() {
+  return _address;
+} // end of Strobe
