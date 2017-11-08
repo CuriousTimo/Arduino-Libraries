@@ -23,7 +23,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * This Library includes the Timing Libarary version 1.9 by Wallace Campos
+ * This Library includes the Timing Library version 1.9 by Wallace Campos
  */
 
 #ifndef Signals_h
