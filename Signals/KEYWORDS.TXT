@@ -12,6 +12,7 @@ Viessmann_4018	KEYWORD1
 Viessmann_4021	KEYWORD1
 Viessmann_4022	KEYWORD1
 Viessmann_4030	KEYWORD1
+Viessmann_4410	KEYWORD1
 Strobe			KEYWORD1
 
 init			KEYWORD2

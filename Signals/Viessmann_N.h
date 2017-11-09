@@ -23,15 +23,28 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * This Library includes the Timing Library version 1.9 by Wallace Campos
+ * This Library includes the Timing Libarary version 1.9 by Wallace Campos
  */
 
-#ifndef Signals_h
-#define Signals_h
+#ifndef Viessmann_N_h
+#define Viessmann_N_h
 
-#include "Strobe.h"
-#include "Viessmann_H0.h"
-#include "Viessmann_N.h"
+// Viessmann_4410
+class Viessmann_4410
+{
+  public:
+    Viessmann_4410(uint8_t vr_green1, uint8_t vr_yellow1, uint8_t vr_green2, uint8_t vr_yellow2);
+    void init(uint16_t address_vr);
+    void set(uint8_t VR);
+    uint16_t getaddress_vr();
+    
+  private:
+    uint8_t _vr_green1;
+    uint8_t _vr_green2;
+    uint8_t _vr_yellow1;
+    uint8_t _vr_yellow2;
+    uint16_t _address_vr;
+}; // end of Viessmann_4410
 
 #endif
 
