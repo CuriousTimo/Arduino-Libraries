@@ -32,7 +32,6 @@
 // VR Signals all have 2 Yellow and 2 Green LEDs so we can reuse this code
     void switch_VR(uint16_t _pin_yellow1, uint16_t _pin_yellow2, uint16_t _pin_green1,  uint16_t _pin_green2, uint8_t mode);
 
-
 // Viessmann_4010
 class Viessmann_4010
 {

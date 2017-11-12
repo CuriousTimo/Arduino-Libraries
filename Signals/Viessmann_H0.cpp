@@ -32,7 +32,7 @@
 #include "Viessmann_H0.h"
 
 // VR Signals all have 2 Yellow and 2 Green LEDs so we can reuse this code
-void switch_VR(uint16_t _pin_yellow1, uint16_t _pin_yellow2, uint16_t _pin_green1,  uint16_t _pin_green2, uint8_t mode) {
+void switch_VR(uint16_t _pin_green1, uint16_t _pin_yellow1, uint16_t _pin_green2, uint16_t _pin_yellow2, uint8_t mode) {
   
   switch (mode) {
     case 0: // Vr0
@@ -48,10 +48,10 @@ void switch_VR(uint16_t _pin_yellow1, uint16_t _pin_yellow2, uint16_t _pin_green
       digitalWrite(_pin_green2,  LOW);
       break;
     case 2: // Vr2
-      digitalWrite(_pin_yellow1, LOW);
-      digitalWrite(_pin_yellow2, HIGH);
-      digitalWrite(_pin_green1,  HIGH);
-      digitalWrite(_pin_green2,  LOW);
+      digitalWrite(_pin_yellow1, HIGH);
+      digitalWrite(_pin_yellow2, LOW);
+      digitalWrite(_pin_green1,  LOW);
+      digitalWrite(_pin_green2,  HIGH);
       break;
     case 99: // LED TEST (All On)
       digitalWrite(_pin_yellow1, LOW);
@@ -78,7 +78,7 @@ Viessmann_4010::Viessmann_4010(uint8_t vr_green1, uint8_t vr_yellow1, uint8_t vr
   _vr_green1   = vr_green1;
   _vr_green2   = vr_green2;
   _vr_yellow1  = vr_yellow1;
-  _vr_yellow2  = vr_yellow1;
+  _vr_yellow2  = vr_yellow2;
 }
 
 void Viessmann_4010::init(uint16_t address_vr) {
@@ -97,11 +97,12 @@ void Viessmann_4010::set(uint8_t VR) {
 
 // Viessmann_4011
 Viessmann_4011::Viessmann_4011(uint8_t hp_red, uint8_t hp_green) {
-  pinMode(hp_red,   OUTPUT);
-  pinMode(hp_green, OUTPUT);
-  
+
   _hp_red     = hp_red;
   _hp_green   = hp_green;
+
+  pinMode(hp_red,   OUTPUT);
+  pinMode(hp_green, OUTPUT);
 }
 
 void Viessmann_4011::init(uint16_t address_hp) {
@@ -272,7 +273,7 @@ Viessmann_4014::Viessmann_4014(uint8_t hp_red, uint8_t hp_green, uint8_t vr_gree
   _vr_green1   = vr_green1;
   _vr_green2   = vr_green2;
   _vr_yellow1  = vr_yellow1;
-  _vr_yellow2  = vr_yellow1;
+  _vr_yellow2  = vr_yellow2;
 }
 
 void Viessmann_4014::init(uint16_t address_hp, uint16_t address_vr) {
@@ -310,7 +311,7 @@ void Viessmann_4014::set(uint8_t HP, uint8_t VR) {
       break;
   }
 
-  switch_VR(_vr_yellow1, _vr_yellow2, _vr_green1,  _vr_green2, VR);
+  switch_VR(_vr_green1, _vr_yellow1, _vr_green2, _vr_yellow2, VR);
 } // end of Viessmann_4014
 
 // Viessmann_4015
@@ -329,7 +330,7 @@ Viessmann_4015::Viessmann_4015(uint8_t hp_red, uint8_t hp_green, uint8_t hp_yell
   _vr_green1   = vr_green1;
   _vr_green2   = vr_green2;
   _vr_yellow1  = vr_yellow1;
-  _vr_yellow2  = vr_yellow1;
+  _vr_yellow2  = vr_yellow2;
 }
 
 void Viessmann_4015::init(uint16_t address_hp, uint16_t address_vr) {
@@ -376,7 +377,7 @@ void Viessmann_4015::set(uint8_t HP, uint8_t VR) {
       break;
   }
 
-  switch_VR(_vr_yellow1, _vr_yellow2, _vr_green1,  _vr_green2, VR);
+  switch_VR(_vr_green1, _vr_yellow1, _vr_green2, _vr_yellow2, VR);
 } // end of Viessmann_4015
 
 // Viessmann_4016
@@ -399,7 +400,7 @@ Viessmann_4016::Viessmann_4016(uint8_t hp_red1, uint8_t hp_red2, uint8_t hp_gree
   _vr_green1   = vr_green1;
   _vr_green2   = vr_green2;
   _vr_yellow1  = vr_yellow1;
-  _vr_yellow2  = vr_yellow1;
+  _vr_yellow2  = vr_yellow2;
 }
 
 void Viessmann_4016::init(uint16_t address_hp, uint16_t address_vr) {
@@ -463,7 +464,7 @@ void Viessmann_4016::set(uint8_t HP, uint8_t VR) {
       break;
   }
 
-  switch_VR(_vr_yellow1, _vr_yellow2, _vr_green1,  _vr_green2, VR);
+  switch_VR(_vr_green1, _vr_yellow1, _vr_green2, _vr_yellow2, VR);
 } // end of Viessmann_4016
 
 // Viessmann_4017
@@ -557,7 +558,7 @@ Viessmann_4030::Viessmann_4030(uint8_t vr_green1, uint8_t vr_yellow1, uint8_t vr
   _vr_green1   = vr_green1;
   _vr_green2   = vr_green2;
   _vr_yellow1  = vr_yellow1;
-  _vr_yellow2  = vr_yellow1;
+  _vr_yellow2  = vr_yellow2;
   _kl_white  = kl_white;
 }
 
@@ -577,7 +578,7 @@ uint16_t Viessmann_4030::getaddress_kl() {
 }
 
 void Viessmann_4030::set(uint8_t VR, uint8_t KL) {
-  switch_VR(_vr_yellow1, _vr_yellow2, _vr_green1,  _vr_green2, VR);
+  switch_VR(_vr_green1, _vr_yellow1, _vr_green2, _vr_yellow2, VR);
 
   switch (KL) {
     case 0: // On
